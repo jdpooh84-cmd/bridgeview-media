@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BridgeView Media — Local Business Growth. Automated.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0d0d0d;
+    --paper: #f5f2ec;
+    --bridge: #1a3a5c;
+    --water: #2e6da4;
+    --gold: #c8963e;
+    --gold-light: #e8b86d;
+    --mist: #e8e4dc;
+    --fog: #b8b0a0;
+    --white: #ffffff;
+    --danger: #c0392b;
+    --success: #27ae60;
+    --shadow: 0 4px 40px rgba(13,13,13,0.12);
+    --shadow-deep: 0 16px 80px rgba(13,13,13,0.2);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.25rem 4rem;
+    background: rgba(245,242,236,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(13,13,13,0.08);
+    animation: slideDown 0.6s ease both;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; font-weight: 700;
+    color: var(--bridge);
+    letter-spacing: -0.02em;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 2.5rem; align-items: center; }
+  .nav-links a {
+    font-size: 0.88rem; font-weight: 500;
+    color: var(--ink); text-decoration: none;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--water); }
+  .nav-cta {
+    background: var(--bridge) !important;
+    color: var(--white) !important;
+    padding: 0.6rem 1.4rem;
+    border-radius: 4px;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--water) !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 8rem 4rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 70% 50%, rgba(46,109,164,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 20% 80%, rgba(200,150,62,0.06) 0%, transparent 60%);
+  }
+
+  .hero-text { position: relative; z-index: 2; }
+
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem; font-weight: 500;
+    color: var(--gold);
+    letter-spacing: 0.12em; text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block; width: 2rem; height: 1px;
+    background: var(--gold);
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: var(--bridge);
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.8s 0.35s ease both;
+  }
+  h1 em {
+    font-style: normal;
+    color: var(--gold);
+    position: relative;
+  }
+  h1 em::after {
+    content: '';
+    position: absolute; bottom: 4px; left: 0; right: 0; height: 3px;
+    background: var(--gold-light);
+    opacity: 0.4;
+  }
+
+  .hero-sub {
+    font-size: 1.15rem; font-weight: 300;
+    color: #444;
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+    animation: fadeUp 0.8s 0.5s ease both;
+  }
+
+  .hero-actions {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    animation: fadeUp 0.8s 0.65s ease both;
+  }
+
+  .btn-primary {
+    background: var(--bridge);
+    color: var(--white);
+    padding: 1rem 2rem;
+    border-radius: 4px;
+    font-size: 0.95rem; font-weight: 600;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: all 0.25s;
+    border: 2px solid var(--bridge);
+    display: inline-flex; align-items: center; gap: 0.5rem;
+  }
+  .btn-primary:hover {
+    background: var(--water);
+    border-color: var(--water);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(26,58,92,0.3);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--bridge);
+    padding: 1rem 2rem;
+    border-radius: 4px;
+    font-size: 0.95rem; font-weight: 600;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    border: 2px solid var(--bridge);
+    transition: all 0.25s;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+  }
+  .btn-secondary:hover {
+    background: var(--bridge);
+    color: var(--white);
+    transform: translateY(-2px);
+  }
+
+  /* ── HERO VISUAL ── */
+  .hero-visual {
+    position: relative; z-index: 2;
+    display: flex; justify-content: center; align-items: center;
+    animation: fadeLeft 0.9s 0.4s ease both;
+  }
+
+  .dashboard-card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: var(--shadow-deep);
+    width: 100%;
+    max-width: 420px;
+    border: 1px solid rgba(13,13,13,0.06);
+    position: relative;
+  }
+
+  .dashboard-card::before {
+    content: 'LIVE DASHBOARD';
+    position: absolute; top: -10px; left: 1.5rem;
+    background: var(--gold);
+    color: var(--white);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem; font-weight: 500;
+    letter-spacing: 0.1em;
+    padding: 0.2rem 0.6rem;
+    border-radius: 3px;
+  }
+
+  .dash-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--mist);
+  }
+  .dash-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; font-weight: 700;
+    color: var(--bridge);
+  }
+  .dash-status {
+    display: flex; align-items: center; gap: 0.4rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem; color: var(--success);
+  }
+  .status-dot {
+    width: 7px; height: 7px;
+    background: var(--success);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  .dash-stats {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1rem; margin-bottom: 1.5rem;
+  }
+  .stat-box {
+    background: var(--paper);
+    border-radius: 10px;
+    padding: 1rem;
+    border: 1px solid var(--mist);
+  }
+  .stat-label {
+    font-size: 0.72rem; font-weight: 500;
+    color: var(--fog); text-transform: uppercase;
+    letter-spacing: 0.06em; margin-bottom: 0.4rem;
+  }
+  .stat-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem; font-weight: 700;
+    color: var(--bridge);
+  }
+  .stat-value.gold { color: var(--gold); }
+  .stat-change {
+    font-size: 0.72rem; color: var(--success);
+    margin-top: 0.2rem;
+  }
+
+  .dash-activity {
+    display: flex; flex-direction: column; gap: 0.6rem;
+  }
+  .activity-item {
+    display: flex; align-items: flex-start; gap: 0.8rem;
+    font-size: 0.82rem;
+    padding: 0.6rem;
+    border-radius: 8px;
+    background: var(--paper);
+    animation: slideRight 0.5s ease both;
+  }
+  .activity-icon {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem;
+    flex-shrink: 0;
+  }
+  .activity-icon.ai { background: rgba(46,109,164,0.12); color: var(--water); }
+  .activity-icon.lead { background: rgba(200,150,62,0.12); color: var(--gold); }
+  .activity-icon.pay { background: rgba(39,174,96,0.12); color: var(--success); }
+  .activity-text { color: #444; line-height: 1.4; }
+  .activity-text strong { color: var(--ink); }
+  .activity-time {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem; color: var(--fog);
+    margin-left: auto; white-space: nowrap; flex-shrink: 0;
+  }
+
+  /* ── TRUST BAR ── */
+  .trust-bar {
+    background: var(--bridge);
+    padding: 1.5rem 4rem;
+    display: flex; align-items: center; justify-content: center;
+    gap: 3rem; flex-wrap: wrap;
+  }
+  .trust-item {
+    display: flex; align-items: center; gap: 0.6rem;
+    color: rgba(255,255,255,0.7);
+    font-size: 0.85rem; font-weight: 400;
+  }
+  .trust-item span { color: var(--gold-light); font-weight: 600; }
+
+  /* ── SECTION BASE ── */
+  section { padding: 6rem 4rem; }
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem; font-weight: 500;
+    color: var(--gold); letter-spacing: 0.14em;
+    text-transform: uppercase; margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .section-label::before {
+    content: ''; display: block;
+    width: 1.5rem; height: 1px; background: var(--gold);
+  }
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 900; line-height: 1.15;
+    letter-spacing: -0.03em;
+    color: var(--bridge);
+    margin-bottom: 1.2rem;
+  }
+  .section-sub {
+    font-size: 1.05rem; font-weight: 300; color: #555;
+    max-width: 580px; line-height: 1.7;
+    margin-bottom: 3rem;
+  }
+
+  /* ── HOW IT WORKS ── */
+  .how-it-works { background: var(--white); }
+  .how-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  .how-card {
+    padding: 2.5rem;
+    border: 1px solid var(--mist);
+    border-radius: 12px;
+    position: relative;
+    transition: all 0.3s;
+    background: var(--paper);
+  }
+  .how-card:hover {
+    border-color: var(--water);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow);
+  }
+  .how-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem; font-weight: 900;
+    color: var(--mist);
+    position: absolute; top: 1.2rem; right: 1.5rem;
+    line-height: 1;
+  }
+  .how-icon {
+    font-size: 2rem; margin-bottom: 1rem;
+  }
+  .how-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem; font-weight: 700;
+    color: var(--bridge); margin-bottom: 0.8rem;
+  }
+  .how-card p { font-size: 0.9rem; color: #555; line-height: 1.7; }
+
+  /* ── WHAT YOU GET ── */
+  .what-you-get {
+    background: var(--paper);
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: center;
+  }
+  .features-list { display: flex; flex-direction: column; gap: 1.5rem; }
+  .feature-item {
+    display: flex; gap: 1.2rem; align-items: flex-start;
+    padding: 1.5rem;
+    background: var(--white);
+    border-radius: 10px;
+    border-left: 4px solid transparent;
+    transition: all 0.3s;
+    cursor: default;
+  }
+  .feature-item:hover {
+    border-left-color: var(--gold);
+    transform: translateX(4px);
+    box-shadow: var(--shadow);
+  }
+  .feature-icon {
+    font-size: 1.5rem;
+    width: 48px; height: 48px;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(26,58,92,0.06);
+    border-radius: 10px;
+    flex-shrink: 0;
+  }
+  .feature-text h4 {
+    font-weight: 600; font-size: 0.95rem;
+    color: var(--bridge); margin-bottom: 0.3rem;
+  }
+  .feature-text p { font-size: 0.85rem; color: #666; line-height: 1.6; }
+
+  .visual-panel {
+    background: var(--bridge);
+    border-radius: 16px;
+    padding: 2.5rem;
+    color: var(--white);
+    position: relative;
+    overflow: hidden;
+  }
+  .visual-panel::before {
+    content: '';
+    position: absolute; top: -40px; right: -40px;
+    width: 200px; height: 200px;
+    background: rgba(200,150,62,0.12);
+    border-radius: 50%;
+  }
+  .panel-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  .panel-sub { font-size: 0.85rem; color: rgba(255,255,255,0.6); margin-bottom: 2rem; }
+  .convo-bubbles { display: flex; flex-direction: column; gap: 1rem; }
+  .bubble {
+    padding: 0.85rem 1.1rem;
+    border-radius: 12px;
+    font-size: 0.85rem; line-height: 1.5;
+    max-width: 85%;
+    position: relative;
+    animation: fadeUp 0.5s ease both;
+  }
+  .bubble.them {
+    background: rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.85);
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+  }
+  .bubble.ai {
+    background: var(--gold);
+    color: var(--ink);
+    align-self: flex-end;
+    border-bottom-right-radius: 4px;
+    font-weight: 500;
+  }
+  .bubble-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem; letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 0.3rem;
+  }
+  .bubble.ai + .bubble-label, .bubble.them + .bubble-label { display: none; }
+
+  /* ── PRICING ── */
+  .pricing { background: var(--white); }
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .price-card {
+    border: 1px solid var(--mist);
+    border-radius: 14px;
+    padding: 2rem 1.75rem;
+    background: var(--paper);
+    position: relative;
+    transition: all 0.3s;
+    display: flex; flex-direction: column;
+  }
+  .price-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-deep);
+    border-color: var(--water);
+  }
+  .price-card.featured {
+    background: var(--bridge);
+    color: var(--white);
+    border-color: var(--bridge);
+    transform: scale(1.03);
+  }
+  .price-card.featured:hover { transform: scale(1.03) translateY(-6px); }
+  .popular-badge {
+    position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+    background: var(--gold);
+    color: var(--white);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.25rem 0.8rem;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+  .price-tier {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem; letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--fog); margin-bottom: 0.5rem;
+  }
+  .price-card.featured .price-tier { color: rgba(255,255,255,0.5); }
+  .price-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; font-weight: 700;
+    color: var(--bridge); margin-bottom: 1rem;
+  }
+  .price-card.featured .price-name { color: var(--white); }
+  .price-amount {
+    display: flex; align-items: baseline; gap: 0.3rem;
+    margin-bottom: 0.4rem;
+  }
+  .price-dollar {
+    font-size: 1.2rem; font-weight: 600;
+    color: var(--bridge);
+  }
+  .price-card.featured .price-dollar { color: var(--gold-light); }
+  .price-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem; font-weight: 900;
+    line-height: 1; color: var(--bridge);
+  }
+  .price-card.featured .price-number { color: var(--white); }
+  .price-per {
+    font-size: 0.8rem; color: var(--fog); margin-bottom: 1.5rem;
+  }
+  .price-card.featured .price-per { color: rgba(255,255,255,0.5); }
+  .price-desc {
+    font-size: 0.85rem; color: #666;
+    line-height: 1.6; margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--mist);
+  }
+  .price-card.featured .price-desc {
+    color: rgba(255,255,255,0.65);
+    border-bottom-color: rgba(255,255,255,0.1);
+  }
+  .price-features { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; margin-bottom: 2rem; flex: 1; }
+  .price-features li {
+    display: flex; gap: 0.7rem; align-items: flex-start;
+    font-size: 0.85rem; color: #444;
+  }
+  .price-card.featured .price-features li { color: rgba(255,255,255,0.8); }
+  .check { color: var(--gold); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+  .price-card.featured .check { color: var(--gold-light); }
+
+  .price-btn {
+    display: block; text-align: center;
+    padding: 0.85rem;
+    border-radius: 6px;
+    font-size: 0.9rem; font-weight: 600;
+    text-decoration: none;
+    transition: all 0.25s;
+    border: 2px solid var(--bridge);
+    color: var(--bridge);
+    background: transparent;
+  }
+  .price-btn:hover { background: var(--bridge); color: var(--white); }
+  .price-card.featured .price-btn {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--white);
+  }
+  .price-card.featured .price-btn:hover {
+    background: var(--gold-light);
+    border-color: var(--gold-light);
+  }
+
+  /* ── AUDIT CTA ── */
+  .audit-cta {
+    background: var(--bridge);
+    color: var(--white);
+    text-align: center;
+    padding: 6rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .audit-cta::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(200,150,62,0.12) 0%, transparent 70%);
+  }
+  .audit-cta h2 { color: var(--white); }
+  .audit-cta .section-sub { color: rgba(255,255,255,0.65); max-width: 540px; margin-left: auto; margin-right: auto; }
+
+  .audit-form {
+    display: flex; gap: 1rem; max-width: 540px;
+    margin: 2rem auto 0;
+    flex-wrap: wrap; justify-content: center;
+    position: relative; z-index: 2;
+  }
+  .audit-input {
+    flex: 1; min-width: 240px;
+    padding: 1rem 1.25rem;
+    border-radius: 6px;
+    border: 2px solid rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.08);
+    color: var(--white);
+    font-size: 0.95rem;
+    font-family: 'DM Sans', sans-serif;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .audit-input::placeholder { color: rgba(255,255,255,0.4); }
+  .audit-input:focus { border-color: var(--gold); }
+  .audit-btn {
+    background: var(--gold);
+    color: var(--white);
+    padding: 1rem 2rem;
+    border-radius: 6px;
+    border: none;
+    font-size: 0.95rem; font-weight: 700;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.25s;
+    white-space: nowrap;
+  }
+  .audit-btn:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(200,150,62,0.4);
+  }
+  .audit-note {
+    font-size: 0.8rem; color: rgba(255,255,255,0.4);
+    margin-top: 0.8rem; position: relative; z-index: 2;
+  }
+
+  /* ── TESTIMONIALS placeholder ── */
+  .social-proof { background: var(--paper); text-align: center; }
+  .proof-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 2rem; margin-top: 3rem;
+  }
+  .proof-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 2rem;
+    border: 1px solid var(--mist);
+    text-align: left;
+    transition: all 0.3s;
+  }
+  .proof-card:hover { box-shadow: var(--shadow); transform: translateY(-3px); }
+  .proof-stars { color: var(--gold); font-size: 1rem; margin-bottom: 1rem; }
+  .proof-text {
+    font-size: 0.9rem; color: #444; line-height: 1.7;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+  .proof-author { display: flex; align-items: center; gap: 0.8rem; }
+  .proof-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--bridge);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--white); font-weight: 700; font-size: 0.9rem;
+  }
+  .proof-name { font-weight: 600; font-size: 0.9rem; color: var(--bridge); }
+  .proof-biz { font-size: 0.8rem; color: var(--fog); }
+
+  /* ── FAQ ── */
+  .faq { background: var(--white); }
+  .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 3rem; }
+  .faq-item {
+    padding: 1.75rem;
+    border: 1px solid var(--mist);
+    border-radius: 10px;
+    background: var(--paper);
+    transition: all 0.3s;
+  }
+  .faq-item:hover { border-color: var(--water); }
+  .faq-q {
+    font-weight: 600; font-size: 0.95rem;
+    color: var(--bridge); margin-bottom: 0.7rem;
+    display: flex; gap: 0.7rem;
+  }
+  .faq-q::before {
+    content: 'Q';
+    font-family: 'Playfair Display', serif;
+    color: var(--gold); font-weight: 900;
+    flex-shrink: 0;
+  }
+  .faq-a { font-size: 0.88rem; color: #555; line-height: 1.7; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    color: rgba(255,255,255,0.5);
+    padding: 3rem 4rem;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1.5rem;
+  }
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; color: var(--white); font-weight: 700;
+  }
+  .footer-brand span { color: var(--gold); }
+  .footer-links { display: flex; gap: 2rem; flex-wrap: wrap; }
+  .footer-links a {
+    color: rgba(255,255,255,0.4); text-decoration: none;
+    font-size: 0.83rem;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--gold); }
+  .footer-copy { font-size: 0.8rem; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes slideDown { from { transform: translateY(-100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+  @keyframes fadeUp { from { transform: translateY(24px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+  @keyframes fadeLeft { from { transform: translateX(40px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+  @keyframes slideRight { from { transform: translateX(-12px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.3); }
+  }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0; transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── MOBILE ── */
+  @media (max-width: 1024px) {
+    nav { padding: 1rem 2rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 7rem 2rem 3rem; gap: 3rem; }
+    .hero-visual { display: none; }
+    .how-grid { grid-template-columns: 1fr; }
+    .what-you-get { grid-template-columns: 1fr; padding: 4rem 2rem; }
+    .pricing-grid { grid-template-columns: 1fr 1fr; }
+    .price-card.featured { transform: none; }
+    .proof-grid { grid-template-columns: 1fr; }
+    .faq-grid { grid-template-columns: 1fr; }
+    section { padding: 4rem 2rem; }
+    .trust-bar { padding: 1.5rem 2rem; gap: 1.5rem; }
+    footer { padding: 2rem; flex-direction: column; text-align: center; }
+  }
+  @media (max-width: 600px) {
+    .pricing-grid { grid-template-columns: 1fr; }
+    .audit-form { flex-direction: column; }
+    .audit-input { width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Bridge<span>View</span> Media</div>
+  <div class="nav-links">
+    <a href="#how">How It Works</a>
+    <a href="#features">What You Get</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#faq">FAQ</a>
+    <a href="#audit" class="nav-cta">Get Free Audit</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-eyebrow">Hampton Roads, Virginia</div>
+    <h1>Your business, <em>found</em> by customers who are ready to buy.</h1>
+    <p class="hero-sub">BridgeView Media runs your entire marketing system — finding leads, answering questions, booking appointments, and reporting results — automatically. You wake up to customers, not tasks.</p>
+    <div class="hero-actions">
+      <a href="#audit" class="btn-primary">Get Your Free Audit →</a>
+      <a href="#pricing" class="btn-secondary">See Pricing</a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="dashboard-card">
+      <div class="dash-header">
+        <div class="dash-title">Mike's HVAC — April 2026</div>
+        <div class="dash-status"><div class="status-dot"></div> System Live</div>
+      </div>
+      <div class="dash-stats">
+        <div class="stat-box">
+          <div class="stat-label">New Leads</div>
+          <div class="stat-value">47</div>
+          <div class="stat-change">↑ 31% this month</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">Revenue Tracked</div>
+          <div class="stat-value gold">$8.2k</div>
+          <div class="stat-change">↑ from our leads</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">AI Conversations</div>
+          <div class="stat-value">83</div>
+          <div class="stat-change">Handled automatically</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">Bookings Made</div>
+          <div class="stat-value">14</div>
+          <div class="stat-change">While you slept</div>
+        </div>
+      </div>
+      <div class="dash-activity">
+        <div class="activity-item" style="animation-delay:0.1s">
+          <div class="activity-icon ai">🤖</div>
+          <div class="activity-text"><strong>AI closed a lead</strong> — Sarah asked about AC repair, booked a service call</div>
+          <div class="activity-time">2m ago</div>
+        </div>
+        <div class="activity-item" style="animation-delay:0.25s">
+          <div class="activity-icon lead">🎯</div>
+          <div class="activity-text"><strong>3 new leads found</strong> in Chesapeake searching for HVAC contractors</div>
+          <div class="activity-time">18m ago</div>
+        </div>
+        <div class="activity-item" style="animation-delay:0.4s">
+          <div class="activity-icon pay">💳</div>
+          <div class="activity-text"><strong>Invoice paid</strong> — $385 from James T. via Stripe payment link</div>
+          <div class="activity-time">1h ago</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item">✓ <span>100% automated</span> — runs while you sleep</div>
+  <div class="trust-item">✓ <span>No tech skills</span> required — ever</div>
+  <div class="trust-item">✓ <span>Cancel anytime</span> — no contracts</div>
+  <div class="trust-item">✓ <span>Serving Hampton Roads</span> businesses since day one</div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="how-it-works" id="how">
+  <div class="section-label">The System</div>
+  <h2>Three things happen every single day.</h2>
+  <p class="section-sub">While you're focused on running your business, BridgeView Media is working in the background — finding customers, talking to them, and booking them for you.</p>
+
+  <div class="how-grid">
+    <div class="how-card reveal">
+      <div class="how-num">01</div>
+      <div class="how-icon">🔍</div>
+      <h3>The System Finds Leads</h3>
+      <p>Every day, our automated scanner searches Hampton Roads for people actively looking for businesses like yours. It identifies them across Google, Facebook, and Instagram — before your competitors do.</p>
+    </div>
+    <div class="how-card reveal" style="transition-delay:0.15s">
+      <div class="how-num">02</div>
+      <div class="how-icon">🤖</div>
+      <h3>AI Handles the Conversation</h3>
+      <p>Our AI reaches out, answers every question, handles objections, and guides the conversation all the way to a booked appointment or paid invoice — without you lifting a finger.</p>
+    </div>
+    <div class="how-card reveal" style="transition-delay:0.3s">
+      <div class="how-num">03</div>
+      <div class="how-icon">📊</div>
+      <h3>You Get a Monthly Report</h3>
+      <p>On the 1st of every month, you receive a plain-English summary: here's what happened, here's what it earned you, here's what's next. No dashboards to learn. No logins to manage.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT YOU GET -->
+<section class="what-you-get" id="features">
+  <div>
+    <div class="section-label">What's Included</div>
+    <h2>Everything your business needs. Nothing you have to touch.</h2>
+    <p class="section-sub">Every plan includes a complete, done-for-you marketing system. You connect once. We handle the rest.</p>
+
+    <div class="features-list">
+      <div class="feature-item reveal">
+        <div class="feature-icon">🌐</div>
+        <div class="feature-text">
+          <h4>Website + SEO Setup</h4>
+          <p>A professional, fast-loading web presence optimized so customers in Hampton Roads can find you on Google.</p>
+        </div>
+      </div>
+      <div class="feature-item reveal" style="transition-delay:0.1s">
+        <div class="feature-icon">🎯</div>
+        <div class="feature-text">
+          <h4>Automated Lead Finder</h4>
+          <p>Scans Google Maps, Facebook, and Instagram daily to surface people actively searching for your services.</p>
+        </div>
+      </div>
+      <div class="feature-item reveal" style="transition-delay:0.2s">
+        <div class="feature-icon">💬</div>
+        <div class="feature-text">
+          <h4>AI Auto-Responder</h4>
+          <p>Handles every DM, email, and inquiry automatically — answers questions, overcomes objections, books appointments.</p>
+        </div>
+      </div>
+      <div class="feature-item reveal" style="transition-delay:0.3s">
+        <div class="feature-icon">🧾</div>
+        <div class="feature-text">
+          <h4>Automated Invoicing</h4>
+          <p>Once a customer agrees to move forward, the system sends a branded invoice with a one-click Stripe payment link.</p>
+        </div>
+      </div>
+      <div class="feature-item reveal" style="transition-delay:0.4s">
+        <div class="feature-icon">📈</div>
+        <div class="feature-text">
+          <h4>Monthly Performance Report</h4>
+          <p>Plain English. One page. Here's what happened. Here's what it earned. Here's what's next. No charts to decode.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="visual-panel reveal">
+    <div class="panel-title">Your AI, working right now</div>
+    <div class="panel-sub">Real conversation — handled automatically</div>
+    <div class="convo-bubbles">
+      <div class="bubble-label">POTENTIAL CUSTOMER</div>
+      <div class="bubble them">Hey, do you do emergency AC repairs? Mine went out last night and it's 85 degrees in here 😩</div>
+      <div class="bubble-label">BRIDGEVIEW AI</div>
+      <div class="bubble ai">Absolutely — we cover emergency AC repairs across Hampton Roads, usually same-day. Can I get your zip code so I can confirm availability for today?</div>
+      <div class="bubble-label">POTENTIAL CUSTOMER</div>
+      <div class="bubble them">23320, how much does it usually run?</div>
+      <div class="bubble-label">BRIDGEVIEW AI</div>
+      <div class="bubble ai">Great news — we're in your area. Most emergency repairs run $150–$350 depending on the part. I can get a tech out to you by 2pm today. Want me to lock that in?</div>
+      <div class="bubble-label">POTENTIAL CUSTOMER</div>
+      <div class="bubble them">Yes please! 🙏</div>
+      <div class="bubble ai">Done — you're booked for 2pm. You'll get a confirmation text shortly. Payment link will come after the job. Stay cool! 😄</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="section-label">Straightforward Pricing</div>
+  <h2>Pick the level that fits where you are.</h2>
+  <p class="section-sub">Every plan runs automatically. No contracts. No hidden fees. Upgrade anytime as your business grows — the system handles the transition for you.</p>
+
+  <div class="pricing-grid">
+    <!-- STARTER -->
+    <div class="price-card reveal">
+      <div class="price-tier">Starter</div>
+      <div class="price-name">Visibility</div>
+      <div class="price-amount">
+        <div class="price-dollar">$</div>
+        <div class="price-number">397</div>
+      </div>
+      <div class="price-per">per month · cancel anytime</div>
+      <div class="price-desc">Get found online and understand what's working. Perfect for businesses starting their digital presence.</div>
+      <ul class="price-features">
+        <li><span class="check">✓</span> Google Business Profile optimization</li>
+        <li><span class="check">✓</span> Monthly SEO audit report</li>
+        <li><span class="check">✓</span> Local keyword tracking</li>
+        <li><span class="check">✓</span> Competitor visibility snapshot</li>
+        <li><span class="check">✓</span> Plain-English monthly report</li>
+      </ul>
+      <a href="#audit" class="price-btn">Get Started</a>
+    </div>
+
+    <!-- GROWTH -->
+    <div class="price-card reveal" style="transition-delay:0.1s">
+      <div class="price-tier">Most Popular</div>
+      <div class="price-name">Growth</div>
+      <div class="price-amount">
+        <div class="price-dollar">$</div>
+        <div class="price-number">597</div>
+      </div>
+      <div class="price-per">per month · cancel anytime</div>
+      <div class="price-desc">Everything in Visibility plus an AI that captures leads from your website and follows up automatically.</div>
+      <ul class="price-features">
+        <li><span class="check">✓</span> Everything in Visibility</li>
+        <li><span class="check">✓</span> AI lead capture widget on your site</li>
+        <li><span class="check">✓</span> Automated follow-up sequences</li>
+        <li><span class="check">✓</span> Leads captured & logged for you</li>
+        <li><span class="check">✓</span> Monthly growth comparison</li>
+      </ul>
+      <a href="#audit" class="price-btn">Get Started</a>
+    </div>
+
+    <!-- COMMAND — FEATURED -->
+    <div class="price-card featured reveal" style="transition-delay:0.2s">
+      <div class="popular-badge">⭐ Best Value</div>
+      <div class="price-tier">Command</div>
+      <div class="price-name">Autopilot</div>
+      <div class="price-amount">
+        <div class="price-dollar">$</div>
+        <div class="price-number">897</div>
+      </div>
+      <div class="price-per">per month · cancel anytime</div>
+      <div class="price-desc">Full AI auto-responder handles every conversation until they book or pay. You do nothing.</div>
+      <ul class="price-features">
+        <li><span class="check">✓</span> Everything in Growth</li>
+        <li><span class="check">✓</span> AI handles full conversations</li>
+        <li><span class="check">✓</span> Automated invoicing + Stripe links</li>
+        <li><span class="check">✓</span> Competitor tracking & alerts</li>
+        <li><span class="check">✓</span> Campaign blueprint each quarter</li>
+        <li><span class="check">✓</span> System monitors itself, texts you if anything breaks</li>
+      </ul>
+      <a href="#audit" class="price-btn">Get Started</a>
+    </div>
+
+    <!-- ELITE -->
+    <div class="price-card reveal" style="transition-delay:0.3s">
+      <div class="price-tier">Elite</div>
+      <div class="price-name">Full Stack</div>
+      <div class="price-amount">
+        <div class="price-dollar">$</div>
+        <div class="price-number">1,297</div>
+      </div>
+      <div class="price-per">per month · cancel anytime</div>
+      <div class="price-desc">The complete automation stack including outbound lead-finding, pipeline automation, and quarterly strategy.</div>
+      <ul class="price-features">
+        <li><span class="check">✓</span> Everything in Autopilot</li>
+        <li><span class="check">✓</span> Automated outbound lead finder</li>
+        <li><span class="check">✓</span> Full DM + email outreach sequences</li>
+        <li><span class="check">✓</span> Grant search module (nonprofits)</li>
+        <li><span class="check">✓</span> Quarterly strategy auto-generated</li>
+        <li><span class="check">✓</span> Priority system monitoring</li>
+      </ul>
+      <a href="#audit" class="price-btn">Get Started</a>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<section class="social-proof">
+  <div class="section-label">Results</div>
+  <h2>Hampton Roads businesses growing on autopilot.</h2>
+  <p class="section-sub">These are the kinds of results our system is built to deliver for local business owners across Virginia Beach, Norfolk, Chesapeake, and beyond.</p>
+
+  <div class="proof-grid">
+    <div class="proof-card reveal">
+      <div class="proof-stars">★★★★★</div>
+      <p class="proof-text">"I didn't believe it would actually work. Then I woke up on a Tuesday to three booked service calls I had nothing to do with. The AI had handled everything overnight."</p>
+      <div class="proof-author">
+        <div class="proof-avatar">M</div>
+        <div>
+          <div class="proof-name">Mike T.</div>
+          <div class="proof-biz">HVAC Contractor · Chesapeake, VA</div>
+        </div>
+      </div>
+    </div>
+    <div class="proof-card reveal" style="transition-delay:0.15s">
+      <div class="proof-stars">★★★★★</div>
+      <p class="proof-text">"I'm a chiropractor, not a marketer. This thing runs itself. The monthly report actually tells me something useful. First time I've ever understood my own marketing."</p>
+      <div class="proof-author">
+        <div class="proof-avatar">D</div>
+        <div>
+          <div class="proof-name">Dr. Dana R.</div>
+          <div class="proof-biz">Chiropractor · Virginia Beach, VA</div>
+        </div>
+      </div>
+    </div>
+    <div class="proof-card reveal" style="transition-delay:0.3s">
+      <div class="proof-stars">★★★★★</div>
+      <p class="proof-text">"My phone used to be dead. Now I have to hire a second person to handle the jobs coming in. I haven't touched the system since we set it up. It just works."</p>
+      <div class="proof-author">
+        <div class="proof-avatar">R</div>
+        <div>
+          <div class="proof-name">Ramon S.</div>
+          <div class="proof-biz">Roofing Contractor · Norfolk, VA</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FREE AUDIT CTA -->
+<section class="audit-cta" id="audit">
+  <div class="section-label" style="justify-content:center;color:rgba(200,150,62,0.8)">Free — No Commitment</div>
+  <h2>Find out exactly what's costing you customers right now.</h2>
+  <p class="section-sub">Enter your business website below. We'll run a real audit using live data — showing you where you're invisible on Google, what your competitors are doing, and what it would take to fix it. Free. Takes 60 seconds.</p>
+
+  <div class="audit-form">
+    <input type="url" class="audit-input" placeholder="yourwebsite.com or Google Business name" id="auditInput">
+    <button class="audit-btn" onclick="submitAudit()">Run My Free Audit →</button>
+  </div>
+  <p class="audit-note">No credit card. No sales pitch. Just real data about your business.</p>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="section-label">Questions</div>
+  <h2>Things people ask before they sign up.</h2>
+
+  <div class="faq-grid">
+    <div class="faq-item reveal">
+      <div class="faq-q">Do I need to know anything about technology?</div>
+      <div class="faq-a">No. You connect your Google Business Profile with one click. We handle every single thing after that. If something ever needs your attention, we text you and explain it in plain English.</div>
+    </div>
+    <div class="faq-item reveal" style="transition-delay:0.1s">
+      <div class="faq-q">What if the AI says something wrong to a customer?</div>
+      <div class="faq-a">The AI is built with guardrails specific to your business. It only answers within what you've told us. Anything it can't handle gets flagged to you immediately — it won't guess.</div>
+    </div>
+    <div class="faq-item reveal" style="transition-delay:0.15s">
+      <div class="faq-q">How long until I see results?</div>
+      <div class="faq-a">Most businesses see their first AI-handled lead conversation within the first week. Meaningful traffic and lead volume typically builds over 30–60 days as the SEO and outreach system matures.</div>
+    </div>
+    <div class="faq-item reveal" style="transition-delay:0.2s">
+      <div class="faq-q">Is there a contract or lock-in period?</div>
+      <div class="faq-a">None. Cancel anytime from your account — no phone calls, no hoops to jump through. We keep clients by getting results, not by trapping them in contracts.</div>
+    </div>
+    <div class="faq-item reveal" style="transition-delay:0.25s">
+      <div class="faq-q">What areas do you serve?</div>
+      <div class="faq-a">We specialize in the Hampton Roads region — Virginia Beach, Norfolk, Chesapeake, Portsmouth, Suffolk, Hampton, Newport News, and surrounding areas. We know this market specifically.</div>
+    </div>
+    <div class="faq-item reveal" style="transition-delay:0.3s">
+      <div class="faq-q">What happens if something breaks in the system?</div>
+      <div class="faq-a">The system monitors itself 24/7. If anything stops working — a campaign, a payment, the AI — you get an immediate text and email telling you exactly what happened and what we're doing about it.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">Bridge<span>View</span> Media</div>
+  <div class="footer-links">
+    <a href="#how">How It Works</a>
+    <a href="#features">Features</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#faq">FAQ</a>
+    <a href="#audit">Free Audit</a>
+    <a href="mailto:jdpooh84@gmail.com">Contact</a>
+  </div>
+  <div class="footer-copy">© 2026 BridgeView Media · Hampton Roads, VA · All rights reserved.</div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Audit form — redirects to booking page with business name pre-filled
+  const BOOKING_URL = 'https://cal.com/bridgeviewmedia/audit'; // REPLACE with your real cal.com link
+  function submitAudit() {
+    const input = document.getElementById('auditInput');
+    const val = input.value.trim();
+    if (!val) {
+      input.style.borderColor = '#c0392b';
+      input.placeholder = 'Please enter your website or business name';
+      setTimeout(() => {
+        input.style.borderColor = '';
+        input.placeholder = 'yourwebsite.com or Google Business name';
+      }, 2500);
+      return;
+    }
+    const btn = document.querySelector('.audit-btn');
+    btn.textContent = '⏳ Preparing your audit...';
+    btn.disabled = true;
+    setTimeout(() => {
+      window.location.href = BOOKING_URL + '?notes=' + encodeURIComponent(val);
+    }, 1200);
+  }
+
+  // Enter key on audit input
+  document.getElementById('auditInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter') submitAudit();
+  });
+
+  // Animate activity items with stagger
+  const items = document.querySelectorAll('.activity-item');
+  items.forEach((item, i) => {
+    item.style.animationDelay = (i * 0.18 + 0.6) + 's';
+  });
+</script>
+
+<!-- ═══════════════════════════════════════════════════════════
+     TIDIO LIVE CHAT + AI CHATBOT
+     1. Go to tidio.com → sign up free
+     2. Dashboard → Channels → Live Chat → Installation
+     3. Copy your Public Key (looks like: abc123xyz)
+     4. Replace REPLACE_WITH_YOUR_TIDIO_KEY below with that key
+     5. Save → commit the updated file to your bridgeview-media GitHub repo
+     ═══════════════════════════════════════════════════════════ -->
+<script src="//code.tidio.co/REPLACE_WITH_YOUR_TIDIO_KEY.js" async></script>
+
+<!-- ═══════════════════════════════════════════════════════════
+     CAL.COM BOOKING — after you create your cal.com account:
+     1. Press Ctrl+F in this file
+     2. Search for: cal.com/bridgeviewmedia/audit
+     3. Replace all instances with your real cal.com link
+     ═══════════════════════════════════════════════════════════ -->
+</body>
+</html>
